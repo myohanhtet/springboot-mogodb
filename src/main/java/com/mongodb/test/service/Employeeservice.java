@@ -12,9 +12,9 @@ public interface Employeeservice {
 
     public Collection<Employee> getAllEmployee();
 
-    public Optional<Employee> findEmployeeById(int id);
+    public Optional<Employee> findEmployeeById(String id);
 
-    public void deleteEmployee(int id);
+    public void deleteEmployee(String id);
 
     public void updateEmployee(Employee emp);
 

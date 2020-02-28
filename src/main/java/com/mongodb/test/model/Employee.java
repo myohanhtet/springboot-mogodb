@@ -1,23 +1,27 @@
 package com.mongodb.test.model;
 
+import com.mongodb.test.service.Employeeservice;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "employee")
 public class Employee {
+
+    Employeeservice emp;
     @Id
-    private int id;
+    private String id;
     private String name;
     private String designation;
 
     public Employee() {
+
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -45,4 +49,5 @@ public class Employee {
                 ", designation='" + designation + '\'' +
                 '}';
     }
+
 }

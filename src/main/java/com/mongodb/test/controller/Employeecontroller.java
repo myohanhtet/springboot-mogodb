@@ -5,6 +5,7 @@ import com.mongodb.test.service.Employeeservice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -26,30 +27,36 @@ public class Employeecontroller {
         return "Success created emp";
     }
 
-    @GetMapping("/getall")
-    public Collection<Employee> getall(){
+    @GetMapping("/get/all")
+    public Collection<Employee> getAll(){
         logger.debug("Get all data");
        return empsvr.getAllEmployee();
     }
 
     @GetMapping("/employee/{id}")
-    public Optional<Employee> showEmployee(@PathVariable(value = "id") int id)
+    public Optional<Employee> showEmployee(@PathVariable(value = "id") String id)
     {
         logger.debug("FindById:",id);
+
+
+//        if (empsvr.findEmployeeById(id).isEmpty()) {
+//            return HttpStatus.NOT_FOUND;
+//        }
+
         return empsvr.findEmployeeById(id);
     }
 
     @PutMapping("/update/{id}")
-    public String update(@PathVariable("id") int id,@RequestBody Employee e){
+    public String update(@PathVariable("id") String id,@RequestBody Employee e){
         logger.debug("Update employee {}",id);
         System.out.println(e);
         e.setId(id);
         empsvr.updateEmployee(e);
-        return "Employee upated" + id;
+        return "Employee Updated" + id;
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable("id") int id){
+    public String delete(@PathVariable("id") String id){
         logger.debug("delete employee {}",id);
         empsvr.deleteEmployee(id);
         return "Delete User"+ id;

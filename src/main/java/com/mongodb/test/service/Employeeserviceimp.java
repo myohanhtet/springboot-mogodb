@@ -26,12 +26,12 @@ public class Employeeserviceimp implements Employeeservice{
     }
 
     @Override
-    public Optional<Employee> findEmployeeById(int id) {
+    public Optional<Employee> findEmployeeById(String id) {
         return dao.findById(id);
     }
 
     @Override
-    public void deleteEmployee(int id) {
+    public void deleteEmployee(String id) {
         dao.deleteById(id);
     }
 
